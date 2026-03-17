@@ -1,0 +1,28 @@
+---
+import { LANGUAGES } from "@/lib/site-data";
+---
+
+<div>
+  <div class="flex h-2 rounded-md overflow-hidden bg-gh-neutral-muted mb-2">
+    {LANGUAGES.map((lang, i) => (
+      <span
+        class:list={[
+          "block",
+          i === 0 && "rounded-l-md",
+          i === LANGUAGES.length - 1 && "rounded-r-md",
+        ]}
+        style={`width: ${lang.percentage}%; background-color: ${lang.color};`}
+        title={`${lang.name} ${lang.percentage}%`}
+      ></span>
+    ))}
+  </div>
+  <ul class="flex flex-wrap gap-x-4 gap-y-2 list-none">
+    {LANGUAGES.map((lang) => (
+      <li class="flex items-center gap-1 text-xs cursor-default">
+        <span class="w-2 h-2 rounded-full shrink-0" style={`background-color: ${lang.color};`}></span>
+        <span class="text-gh-fg font-semibold">{lang.name}</span>
+        <span class="text-gh-fg-muted">{lang.percentage.toFixed(1)}%</span>
+      </li>
+    ))}
+  </ul>
+</div>

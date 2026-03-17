@@ -1,0 +1,66 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+import { LANGUAGES, TOOLS } from "@/lib/site-data";
+
+const languagesWithWidth = LANGUAGES.map((lang) => ({
+  ...lang,
+  barWidth: lang.percentage * 2,
+}));
+
+const frameworks = TOOLS.filter((t) => t.category === "framework");
+const databases = TOOLS.filter((t) => t.category === "database");
+const devops = TOOLS.filter((t) => t.category === "devops");
+---
+
+<RepoLayout title="skills.md - itismaku/portfolio">
+  <BranchSelector breadcrumbs={[{ name: "skills.md", path: "/skills" }]} />
+  <FileViewer filename="skills.md">
+    <h1>Skills &amp; Technologies</h1>
+
+    <h2>Programming Languages</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Proficiency</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          languagesWithWidth.map((lang) => (
+            <tr>
+              <td>
+                <span class="inline-block w-2.5 h-2.5 rounded-full mr-1.5 align-middle" style={`background:${lang.color};`} />
+                {lang.name}
+              </td>
+              <td>
+                <span
+                  class="inline-block h-2 rounded"
+                  style={`width:${lang.barWidth}px;background:${lang.color};`}
+                />
+                {lang.percentage}%
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+
+    <h2>Frameworks &amp; Libraries</h2>
+    <p class="badge-row">
+      {frameworks.map((tool) => <code>{tool.name}</code>)}
+    </p>
+
+    <h2>Databases</h2>
+    <p class="badge-row">
+      {databases.map((tool) => <code>{tool.name}</code>)}
+    </p>
+
+    <h2>DevOps &amp; Infrastructure</h2>
+    <p class="badge-row">
+      {devops.map((tool) => <code>{tool.name}</code>)}
+    </p>
+  </FileViewer>
+</RepoLayout>

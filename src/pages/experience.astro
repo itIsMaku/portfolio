@@ -1,0 +1,73 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+---
+
+<RepoLayout title="experience.md - itismaku/portfolio">
+  <BranchSelector
+    breadcrumbs={[{ name: "experience.md", path: "/experience" }]}
+  />
+  <FileViewer filename="experience.md">
+    <h1>Experience</h1>
+
+    <h2><a href="/projects/rcore">rcore.cz</a></h2>
+    <p><em>Software Engineer &middot; Oct 2023 &ndash; Present</em></p>
+    <p>
+      Building mods for FiveM (GTA 5) that extend multiplayer gameplay
+      mechanics, used by tens of thousands of players daily. Working with the
+      FiveM client-server model - Lua for game logic, React &amp; TailwindCSS
+      for UI.
+    </p>
+    <ul>
+      <li>
+        Doorlock - dynamic lock management system with React UI and lockpicking
+        minigames
+      </li>
+      <li>
+        Formule - full racing system with team management, leaderboards, circuit
+        editor, and live timing
+      </li>
+    </ul>
+
+    <hr />
+
+    <h2><a href="/projects/wrapujto">wrapujto.cz</a></h2>
+    <p><em>Co-founder &amp; Backend Developer &middot; Feb 2024 &ndash; Present</em></p>
+    <p>
+      Web agency building custom websites and web applications. Responsible for
+      backend architecture, API development, and automation pipelines.
+    </p>
+    <ul>
+      <li>Next.js, React, TailwindCSS</li>
+      <li>PostgreSQL, Prisma, Drizzle</li>
+      <li>AI integrations, automated emails &amp; notifications</li>
+    </ul>
+
+    <hr />
+
+    <h2>Freelance</h2>
+    <p><em>Jul 2021 &ndash; Feb 2024</em></p>
+    <ul>
+      <li>Commission-based backend systems</li>
+      <li>Custom dependency injection framework</li>
+      <li>
+        Node daemon for a hosting provider - managing Docker containers on
+        demand with resource limits and automatic migration based on usage
+      </li>
+    </ul>
+
+    <hr />
+
+    <h2>QPlay Network</h2>
+    <p><em>Intern &middot; Jan 2021 &ndash; Jun 2021</em></p>
+    <p>
+      Development of internal tools for server administration. Optimization of
+      Java plugins for Minecraft.
+    </p>
+    <ul>
+      <li>Java, SpigotAPI</li>
+      <li>Gradle, JUnit</li>
+    </ul>
+  </FileViewer>
+</RepoLayout>

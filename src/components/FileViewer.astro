@@ -1,0 +1,99 @@
+---
+interface Props {
+  filename: string;
+}
+
+const { filename } = Astro.props;
+---
+
+<div class="border border-gh-border rounded-md overflow-hidden">
+  <div class="flex items-center justify-between px-4 py-2 bg-gh-canvas-subtle border-b border-gh-border text-sm">
+    <div class="flex items-center gap-2 text-gh-fg-muted">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path>
+      </svg>
+      <span class="font-semibold text-gh-fg">{filename}</span>
+    </div>
+  </div>
+  <article class="markdown-body p-8 text-base leading-relaxed text-gh-fg">
+    <slot />
+  </article>
+</div>
+
+<style is:global>
+  .markdown-body h1 {
+    font-size: 2em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 0.3em;
+    margin-bottom: 16px;
+  }
+  .markdown-body h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 0.3em;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+  .markdown-body h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+  .markdown-body p { margin-bottom: 16px; }
+  .markdown-body ul, .markdown-body ol { padding-left: 2em; margin-bottom: 16px; }
+  .markdown-body li { margin-bottom: 4px; }
+  .markdown-body a { color: var(--color-accent-fg); }
+  .markdown-body a:hover { text-decoration: underline; }
+  .markdown-body code {
+    padding: 0.2em 0.4em;
+    font-size: 85%;
+    background-color: var(--color-neutral-muted);
+    border-radius: 6px;
+  }
+  .markdown-body pre {
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 85%;
+    background-color: var(--color-canvas-subtle);
+    border-radius: 6px;
+    border: 1px solid var(--color-border-default);
+    margin-bottom: 16px;
+  }
+  .markdown-body pre code { padding: 0; background: none; border-radius: 0; }
+  .markdown-body hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--color-border-default);
+    border: 0;
+  }
+  .markdown-body blockquote {
+    padding: 0 1em;
+    color: var(--color-fg-muted);
+    border-left: 0.25em solid var(--color-border-default);
+    margin-bottom: 16px;
+  }
+  .markdown-body table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+  .markdown-body th, .markdown-body td { padding: 6px 13px; border: 1px solid var(--color-border-default); }
+  .markdown-body th { font-weight: 600; background-color: var(--color-canvas-subtle); }
+  .markdown-body .video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-default);
+    margin-bottom: 24px;
+  }
+  .markdown-body .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+---
+
+<RepoLayout title="AI.md - itismaku/portfolio">
+  <BranchSelector breadcrumbs={[{ name: "AI.md", path: "/ai" }]} />
+  <FileViewer filename="AI.md">
+    <h1>AI &amp; How I Build Stuff with AI</h1>
+
+    <h2>Background</h2>
+    <p>
+      I've always been driven to push forward, just like the tech around me. I
+      started with backend Java, building projects for large game servers
+      handling thousands of concurrent users.
+    </p>
+    <p>
+      Over the past few years, I've shifted to building primarily with
+      TypeScript, Next.js, React, Node.js (sometimes Bun), and PostgreSQL. Tools
+      like
+      <strong>Claude Code</strong> and <strong>OpenClaw</strong> are part of my daily
+      workflow. I've shipped with them many stuff from reservation systems to complex
+      CRMs and infrastructure designs. On top of that, I build my own AI-powered tools
+      for everyday use.
+    </p>
+
+    <h2>Building</h2>
+    <p>
+      What I've learned from my technical background is that AI is not a
+      replacement for developers, but rather a powerful tool that can augment
+      our capabilities. This path has shaped my mind into what I'd call a <strong
+        >builder</strong
+      >. A lot of people question whether AI can produce good, secure products.
+      I believe it can - but it needs a builder who knows how the code works,
+      how to prompt correctly, and understands what to do with an agent.
+    </p>
+
+    <h2>Knowing When to Step In</h2>
+    <p>
+      At the same time, I know when to take the wheel manually. When something
+      breaks, I know where to point the agent. And when I don't know, I know how
+      to ask the right questions. AI is a tool, and like any tool, it requires
+      skill and judgment to use effectively. It's not about replacing
+      developers, but about empowering them to build faster and better than ever
+      before.
+    </p>
+
+    <h2>Why AI Excites Me</h2>
+    <p>
+      What I love most about AI is how insanely fast it makes building ideas.
+      Before, when I had an idea, it would take me <strong>weeks</strong> to get to
+      an MVP. With agents, that's down to <strong>hours or days</strong>.
+    </p>
+    <p>
+      It's like having an infinite team of programmers at your disposal. I can
+      experiment, test new tools, and iterate on workflows until I find the
+      right one. The bottleneck is no longer engineering capacity - it's having
+      good ideas and knowing how to execute them.
+    </p>
+  </FileViewer>
+</RepoLayout>

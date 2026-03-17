@@ -1,0 +1,15 @@
+---
+import RepoLayout from '@/layouts/RepoLayout.astro';
+import BranchSelector from '@/components/BranchSelector.astro';
+import CommitBar from '@/components/CommitBar.astro';
+import FileList from '@/components/FileList.astro';
+import ReadmeContent from '@/components/ReadmeContent.astro';
+import { ROOT_FILES } from '@/lib/site-data';
+---
+
+<RepoLayout>
+  <BranchSelector />
+  <CommitBar />
+  <FileList files={ROOT_FILES} />
+  <ReadmeContent />
+</RepoLayout>

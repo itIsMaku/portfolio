@@ -1,0 +1,41 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import CommitBar from "@/components/CommitBar.astro";
+import FileList from "@/components/FileList.astro";
+import { SITE } from "@/lib/site-data";
+import type { FileEntry } from "@/lib/site-data";
+import { fetchRepos, getOwnRepos, getForkRepos, repoToFileEntry } from "@/lib/github";
+
+let files: FileEntry[] = [];
+
+try {
+  const repos = await fetchRepos();
+  const own = getOwnRepos(repos);
+  const forks = getForkRepos(repos);
+
+  const forksFolder: FileEntry = {
+    name: "forks",
+    type: "dir",
+    path: "/repos/forks",
+    lastCommitMessage: `${forks.length} forked repositories`,
+    lastCommitDate: "",
+  };
+
+  files = [forksFolder, ...own.map(repoToFileEntry)];
+} catch {
+  // Fallback: empty
+}
+---
+
+<RepoLayout title="portfolio/repos - itismaku/portfolio">
+  <BranchSelector breadcrumbs={[{ name: "repos", path: "/repos" }]} />
+  <CommitBar />
+  {files.length > 0 ? (
+    <FileList files={files} preserveOrder />
+  ) : (
+    <div class="p-8 text-center text-gh-fg-muted border border-gh-border border-t-0 rounded-b-md">
+      <p>Could not load repositories. Visit <a href={SITE.github} target="_blank" rel="noopener" class="text-gh-accent">GitHub</a> directly.</p>
+    </div>
+  )}
+</RepoLayout>

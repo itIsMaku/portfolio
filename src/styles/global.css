@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* GitHub Primer-inspired theme tokens mapped to Tailwind CSS theme */
+@theme {
+  --color-gh-canvas: var(--color-canvas-default);
+  --color-gh-canvas-subtle: var(--color-canvas-subtle);
+  --color-gh-canvas-inset: var(--color-canvas-inset);
+  --color-gh-border: var(--color-border-default);
+  --color-gh-border-muted: var(--color-border-muted);
+  --color-gh-border-subtle: var(--color-border-subtle);
+  --color-gh-fg: var(--color-fg-default);
+  --color-gh-fg-muted: var(--color-fg-muted);
+  --color-gh-fg-subtle: var(--color-fg-subtle);
+  --color-gh-fg-on-emphasis: var(--color-fg-on-emphasis);
+  --color-gh-accent: var(--color-accent-fg);
+  --color-gh-neutral-muted: var(--color-neutral-muted);
+  --color-gh-neutral-subtle: var(--color-neutral-subtle);
+  --color-gh-btn-bg: var(--color-btn-bg);
+  --color-gh-btn-border: var(--color-btn-border);
+  --color-gh-btn-hover: var(--color-btn-hover-bg);
+  --color-gh-btn-primary: var(--color-btn-primary-bg);
+  --color-gh-btn-primary-hover: var(--color-btn-primary-hover-bg);
+  --color-gh-header-bg: var(--color-header-bg);
+  --color-gh-header-border: var(--color-header-border);
+  --color-gh-counter: var(--color-counter-bg);
+  --color-gh-topic-bg: var(--color-topic-tag-bg);
+  --color-gh-topic-text: var(--color-topic-tag-text);
+  --color-gh-success: var(--color-success-fg);
+  --color-gh-danger: var(--color-danger-fg);
+  --color-gh-nav-active: var(--color-underlinenav-border-active);
+  --color-gh-file-hover: var(--color-file-row-hover);
+  --color-gh-repo-nav: var(--color-repo-nav-bg);
+}
+
+/* Light theme (default) */
+:root,
+[data-theme="light"] {
+  --color-canvas-default: #ffffff;
+  --color-canvas-subtle: #f6f8fa;
+  --color-canvas-inset: #f6f8fa;
+  --color-border-default: #d1d9e0;
+  --color-border-muted: #d8dee4;
+  --color-border-subtle: rgba(27, 31, 36, 0.15);
+  --color-fg-default: #1f2328;
+  --color-fg-muted: #656d76;
+  --color-fg-subtle: #6e7781;
+  --color-fg-on-emphasis: #ffffff;
+  --color-accent-fg: #0969da;
+  --color-neutral-muted: rgba(175, 184, 193, 0.2);
+  --color-neutral-subtle: rgba(234, 238, 242, 0.5);
+  --color-btn-bg: #f6f8fa;
+  --color-btn-border: rgba(27, 31, 36, 0.15);
+  --color-btn-hover-bg: #f3f4f6;
+  --color-btn-primary-bg: #1f883d;
+  --color-btn-primary-hover-bg: #1a7f37;
+  --color-header-bg: #f6f8fa;
+  --color-header-border: #d1d9e0;
+  --color-counter-bg: rgba(175, 184, 193, 0.2);
+  --color-topic-tag-bg: #ddf4ff;
+  --color-topic-tag-text: #0969da;
+  --color-success-fg: #1a7f37;
+  --color-danger-fg: #d1242f;
+  --color-repo-nav-bg: #ffffff;
+  --color-underlinenav-border-active: #fd8c73;
+  --color-file-row-hover: rgba(234, 238, 242, 0.5);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --color-canvas-default: #0d1117;
+  --color-canvas-subtle: #161b22;
+  --color-canvas-inset: #010409;
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-border-subtle: rgba(240, 246, 252, 0.1);
+  --color-fg-default: #e6edf3;
+  --color-fg-muted: #8b949e;
+  --color-fg-subtle: #6e7681;
+  --color-fg-on-emphasis: #ffffff;
+  --color-accent-fg: #4493f8;
+  --color-neutral-muted: rgba(110, 118, 129, 0.4);
+  --color-neutral-subtle: rgba(110, 118, 129, 0.1);
+  --color-btn-bg: #21262d;
+  --color-btn-border: rgba(240, 246, 252, 0.1);
+  --color-btn-hover-bg: #30363d;
+  --color-btn-primary-bg: #238636;
+  --color-btn-primary-hover-bg: #2ea043;
+  --color-header-bg: #161b22;
+  --color-header-border: #30363d;
+  --color-counter-bg: rgba(110, 118, 129, 0.4);
+  --color-topic-tag-bg: rgba(56, 139, 253, 0.15);
+  --color-topic-tag-text: #4493f8;
+  --color-success-fg: #3fb950;
+  --color-danger-fg: #f85149;
+  --color-repo-nav-bg: #0d1117;
+  --color-underlinenav-border-active: #f78166;
+  --color-file-row-hover: rgba(110, 118, 129, 0.1);
+}
+
+/* Base styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-canvas-subtle); }
+::-webkit-scrollbar-thumb { background: var(--color-neutral-muted); border-radius: 4px; }

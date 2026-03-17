@@ -1,0 +1,39 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+---
+
+<RepoLayout title="about.md - itismaku/portfolio">
+  <BranchSelector breadcrumbs={[{ name: "about.md", path: "/about" }]} />
+  <FileViewer filename="about.md">
+    <h1>About Me</h1>
+    <p>
+      Hey! I'm <strong>Adam</strong> - a full-stack developer with a strong focus
+      on building reliable, well-architected systems.
+    </p>
+
+    <h2>What I Do</h2>
+    <p>
+      I specialize in the <strong>Java</strong> and <strong>TypeScript</strong> ecosystems.
+      On the backend, I build services with <strong>Spring Boot</strong>,
+      working with ORMs, caching layers, and relational databases. On the
+      frontend, I craft modern interfaces with <strong>React</strong> and <strong
+        >Next.js</strong
+      >, styled with TailwindCSS.
+    </p>
+
+    <h2>Philosophy</h2>
+    <p>
+      I believe in writing clean, maintainable code that solves real problems. I
+      prefer simplicity over complexity and working solutions over perfect
+      architectures.
+    </p>
+
+    <h2>Beyond Code</h2>
+    <p>
+      When I'm not coding, you can find me exploring new technologies,
+      contributing to open source, or tinkering with server infrastructure.
+    </p>
+  </FileViewer>
+</RepoLayout>

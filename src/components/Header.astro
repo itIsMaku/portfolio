@@ -1,0 +1,22 @@
+---
+import { SITE } from "@/lib/site-data";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+---
+
+<header class="bg-gh-header-bg border-b border-gh-header-border py-4">
+  <div class="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <nav class="flex items-center gap-2">
+        <a href="/" class="flex items-center gap-1 text-xl max-md:text-base no-underline hover:no-underline">
+          <span class="text-gh-accent font-normal hover:underline">{SITE.username}</span>
+          <span class="text-gh-fg-muted font-light">/</span>
+          <span class="text-gh-accent font-semibold hover:underline">{SITE.repoName}</span>
+        </a>
+        <span class="text-xs text-gh-fg-muted border border-gh-border rounded-full px-[7px] leading-[22px]">Public</span>
+      </nav>
+    </div>
+    <div class="flex items-center gap-2">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

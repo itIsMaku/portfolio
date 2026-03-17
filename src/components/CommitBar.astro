@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import { SITE } from '@/lib/site-data';
+
+interface Props {
+  commitCount?: number;
+}
+
+const { commitCount = 1 } = Astro.props;
+const avatarUrl = `https://avatars.githubusercontent.com/itismaku?size=40`;
+---
+
+<div class="flex items-center justify-between px-4 py-2 bg-gh-canvas-subtle border border-gh-border rounded-t-md text-sm gap-4 max-md:gap-2">
+  <div class="flex items-center gap-2 min-w-0 flex-1">
+    <a href={SITE.githubRepo} target="_blank" rel="noopener" aria-label={`${SITE.username}'s GitHub profile`}>
+      <Image
+        src={avatarUrl}
+        alt={SITE.username}
+        width={20}
+        height={20}
+        loading="eager"
+        class="rounded-full align-middle"
+      />
+    </a>
+    <a href={SITE.githubRepo} class="text-gh-fg font-semibold whitespace-nowrap no-underline hover:underline" target="_blank" rel="noopener">
+      {SITE.username}
+    </a>
+    <span class="text-gh-fg overflow-hidden text-ellipsis whitespace-nowrap" id="commit-message">Initial commit</span>
+  </div>
+  <div class="flex items-center gap-2 shrink-0 text-xs text-gh-fg-muted">
+    <a href={`${SITE.githubRepo}/commits`} class="font-mono text-gh-accent text-xs max-md:hidden" id="commit-hash" target="_blank" rel="noopener" aria-label="Commit hash">
+      <!--filled by JS-->
+    </a>
+    <span class="text-gh-fg-muted max-md:hidden" id="commit-date"></span>
+    <a href={`${SITE.githubRepo}/commits`} class="flex items-center gap-1 text-gh-fg font-semibold whitespace-nowrap hover:text-gh-accent hover:no-underline" target="_blank" rel="noopener">
+      <svg aria-hidden="true" focusable="false" class="text-gh-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="vertical-align:text-bottom"><path d="m.427 1.927 1.215 1.215a8.002 8.002 0 1 1-1.6 5.685.75.75 0 1 1 1.493-.154 6.5 6.5 0 1 0 1.18-4.458l1.358 1.358A.25.25 0 0 1 3.896 6H.25A.25.25 0 0 1 0 5.75V2.104a.25.25 0 0 1 .427-.177ZM7.75 4a.75.75 0 0 1 .75.75v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5A.75.75 0 0 1 7.75 4Z"></path></svg>
+      <span id="commit-count">{commitCount} commit{commitCount !== 1 ? 's' : ''}</span>
+    </a>
+  </div>
+</div>
+
+<script define:vars={{ githubRepo: SITE.githubRepo, username: SITE.username }}>
+  async function fetchLatestCommit() {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${username}/portfolio/commits?per_page=1`);
+      if (!res.ok) return;
+      const commits = await res.json();
+      if (!commits.length) return;
+      const commit = commits[0];
+      const msgEl = document.getElementById('commit-message');
+      const hashEl = document.getElementById('commit-hash');
+      const dateEl = document.getElementById('commit-date');
+      const countEl = document.getElementById('commit-count');
+
+      if (msgEl) msgEl.textContent = commit.commit.message.split('\n')[0];
+      if (hashEl) {
+        hashEl.textContent = commit.sha.substring(0, 7);
+        hashEl.href = commit.html_url;
+      }
+      if (dateEl) {
+        const date = new Date(commit.commit.author.date);
+        const now = new Date();
+        const diffMs = now.getTime() - date.getTime();
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        if (diffDays === 0) dateEl.textContent = 'today';
+        else if (diffDays === 1) dateEl.textContent = 'yesterday';
+        else if (diffDays < 30) dateEl.textContent = `${diffDays} days ago`;
+        else dateEl.textContent = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+
+      // Fetch total commit count
+      const countRes = await fetch(`https://api.github.com/repos/${username}/portfolio`, { headers: { Accept: 'application/vnd.github.v3+json' } });
+      if (countRes.ok) {
+        // GitHub doesn't directly expose commit count, use the commits link header
+        const commitsRes = await fetch(`https://api.github.com/repos/${username}/portfolio/commits?per_page=1`);
+        const link = commitsRes.headers.get('Link');
+        if (link && countEl) {
+          const match = link.match(/page=(\d+)>; rel="last"/);
+          if (match) countEl.textContent = `${match[1]} commits`;
+        }
+      }
+    } catch (e) {
+      // Silently fail — static fallback is shown
+    }
+  }
+  fetchLatestCommit();
+</script>

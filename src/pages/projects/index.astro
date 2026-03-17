@@ -1,0 +1,13 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import CommitBar from "@/components/CommitBar.astro";
+import FileList from "@/components/FileList.astro";
+import { PROJECT_FILES } from "@/lib/site-data";
+---
+
+<RepoLayout title="portfolio/projects - itismaku/portfolio">
+  <BranchSelector breadcrumbs={[{ name: "projects", path: "/projects" }]} />
+  <CommitBar />
+  <FileList files={PROJECT_FILES} />
+</RepoLayout>

@@ -1,0 +1,45 @@
+---
+import type { FileEntry } from "@/lib/site-data";
+
+interface Props {
+  files: FileEntry[];
+  basePath?: string;
+  preserveOrder?: boolean;
+}
+
+const { files, basePath, preserveOrder = false } = Astro.props;
+
+const sorted = [...files].sort((a, b) => {
+  if (a.type !== b.type) return a.type === "dir" ? -1 : 1;
+  if (preserveOrder) return 0;
+  if (a.name === "README.md") return 1;
+  if (b.name === "README.md") return -1;
+  return a.name.localeCompare(b.name);
+});
+---
+
+<div class="border border-gh-border border-t-0 rounded-b-md overflow-hidden">
+  {sorted.map((file) => (
+    <a
+      href={file.path}
+      class="grid grid-cols-[16px_minmax(120px,2fr)_minmax(0,4fr)_auto] max-md:grid-cols-[16px_1fr_auto] gap-2 items-center px-4 py-1.5 border-t border-gh-border-muted no-underline text-gh-fg text-sm transition-colors hover:bg-gh-file-hover hover:no-underline"
+      target={file.external ? "_blank" : undefined}
+      rel={file.external ? "noopener" : undefined}
+    >
+      <div class="flex items-center">
+        {file.type === "dir" ? (
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="text-gh-accent">
+            <path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path>
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="text-gh-fg-muted">
+            <path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path>
+          </svg>
+        )}
+      </div>
+      <div class="text-gh-accent whitespace-nowrap overflow-hidden text-ellipsis hover:underline">{file.name}</div>
+      <div class="text-gh-fg-muted whitespace-nowrap overflow-hidden text-ellipsis max-md:hidden">{file.lastCommitMessage}</div>
+      <div class="text-gh-fg-muted whitespace-nowrap text-right text-xs">{file.lastCommitDate}</div>
+    </a>
+  ))}
+</div>

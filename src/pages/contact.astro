@@ -1,0 +1,42 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+import { SITE } from "@/lib/site-data";
+---
+
+<RepoLayout title="contact.md - itismaku/portfolio">
+  <BranchSelector breadcrumbs={[{ name: "contact.md", path: "/contact" }]} />
+  <FileViewer filename="contact.md">
+    <h1>Contact</h1>
+
+    <p>Feel free to reach out through any of the following channels:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🐙 GitHub</td>
+          <td><a href={SITE.github} target="_blank" rel="noopener">@itismaku</a></td>
+        </tr>
+        <tr>
+          <td>💼 LinkedIn</td>
+          <td><a href={SITE.linkedin} target="_blank" rel="noopener">Adam Volkman</a></td>
+        </tr>
+        <tr>
+          <td>🐦 X / Twitter</td>
+          <td><a href={SITE.twitter} target="_blank" rel="noopener">@just_makuu</a></td>
+        </tr>
+        <tr>
+          <td>📷 Instagram</td>
+          <td><a href={SITE.instagram} target="_blank" rel="noopener">@a._.volkman</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </FileViewer>
+</RepoLayout>

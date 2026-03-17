@@ -1,0 +1,80 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+---
+
+<RepoLayout title="projects/rcore.md - itismaku/portfolio">
+  <BranchSelector
+    breadcrumbs={[
+      { name: "projects", path: "/projects" },
+      { name: "rcore.md", path: "/projects/rcore" },
+    ]}
+  />
+  <FileViewer filename="rcore.md">
+    <h1>rcore.cz</h1>
+
+    <p>
+      <a href="https://rcore.cz/" target="_blank" rel="noopener">rcore.cz</a>
+    </p>
+
+    <h2>Overview</h2>
+    <p>
+      Development of mods for <strong>FiveM</strong> (GTA 5) extending gameplay mechanics
+      in a multiplayer environment. FiveM uses a client-server model - client and
+      server code is written in <strong>Lua</strong>, while the UI is built with
+      web frontend technologies, specifically <strong>React</strong> and <strong
+        >TailwindCSS</strong
+      >.
+    </p>
+    <p>
+      The mods I've contributed to are used by <strong
+        >tens of thousands of players daily</strong
+      >.
+    </p>
+
+    <h2>Notable Projects</h2>
+
+    <h3><a href="https://store.rcore.cz/package/6525656" target="_blank" rel="noopener">Doorlock</a></h3>
+    <p>
+      A door lock management system with dynamic creation and management through
+      a React UI. Features configurable access controls and lockpicking
+      minigames for breaking in.
+    </p>
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/sq9UG0yxHOc"
+        title="Doorlock demo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <h3><a href="https://store.rcore.cz/package/7247584" target="_blank" rel="noopener">Formule</a></h3>
+    <p>A full-featured formula racing system including:</p>
+    <ul>
+      <li>Circuit racing with formula cars</li>
+      <li>Team creation &amp; management - finances, member roles</li>
+      <li>Points-based leaderboard progression</li>
+      <li>Step-by-step circuit creation tools</li>
+      <li>
+        Lap timing &amp; live racer position tracking during races and practice
+        sessions
+      </li>
+    </ul>
+    <p>All UI built in React.</p>
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/67RJxS_1ILc"
+        title="Formule demo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <h2>Technologies Used</h2>
+    <ul>
+      <li>Lua (client &amp; server)</li>
+      <li>React &amp; TailwindCSS (UI)</li>
+      <li>CitizenFX / FiveM framework</li>
+    </ul>
+  </FileViewer>
+</RepoLayout>

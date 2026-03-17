@@ -1,0 +1,67 @@
+---
+import RepoLayout from "@/layouts/RepoLayout.astro";
+import BranchSelector from "@/components/BranchSelector.astro";
+import FileViewer from "@/components/FileViewer.astro";
+---
+
+<RepoLayout title="projects/wrapujto.md - itismaku/portfolio">
+  <BranchSelector
+    breadcrumbs={[
+      { name: "projects", path: "/projects" },
+      { name: "wrapujto.md", path: "/projects/wrapujto" },
+    ]}
+  />
+  <FileViewer filename="wrapujto.md">
+    <h1>wrapujto.cz</h1>
+
+    <p>
+      <a href="https://wrapujto.cz/" target="_blank" rel="noopener"
+        >wrapujto.cz</a
+      >
+    </p>
+
+    <h2>Overview</h2>
+    <p>
+      A creative web agency based in Czech Republic. We build functional,
+      well-designed websites and web applications.
+    </p>
+
+    <h2>Services</h2>
+    <ul>
+      <li>
+        <strong>Branding</strong> - tailoring websites to reflect client identity
+      </li>
+      <li>
+        <strong>Webdesign</strong> - custom-built, visually appealing designs
+      </li>
+      <li>
+        <strong>Development</strong> - modern, functional web applications
+      </li>
+      <li>
+        <strong>Automation</strong> - AI integrations, automated emails &amp; notifications
+      </li>
+    </ul>
+
+    <h2>My Role</h2>
+    <p>
+      Co-founder &amp; <strong
+        >Backend Developer &amp; Automation Specialist</strong
+      >. Responsible for backend architecture, API development, and building
+      automation pipelines for clients.
+    </p>
+
+    <h2>Technologies Used</h2>
+    <ul>
+      <li>Next.js, React, TailwindCSS</li>
+      <li>PostgreSQL, Prisma, Drizzle</li>
+      <li>Node.js, Bun</li>
+      <li>Railway</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <ul>
+      <li>Email: <a href="mailto:info@wrapujto.cz">info@wrapujto.cz</a></li>
+      <li>Location: Czech Republic</li>
+    </ul>
+  </FileViewer>
+</RepoLayout>
