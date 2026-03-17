@@ -4,12 +4,19 @@ import Header from "@/components/Header.astro";
 import RepoNav from "@/components/RepoNav.astro";
 import Sidebar from "@/components/Sidebar.astro";
 import Footer from "@/components/Footer.astro";
+import { SITE } from "@/lib/site-data";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "itismaku/portfolio" } = Astro.props;
+const {
+  title = "itismaku/portfolio",
+  description = "Portfolio of Adam Volkman — Full-stack developer specializing in Java & TypeScript ecosystems. Building robust backends with Spring Boot and modern frontends with React & Next.js.",
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -17,12 +24,53 @@ const { title = "itismaku/portfolio" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portfolio of Adam Volkman - Full-stack developer specializing in Java & TypeScript ecosystems."
-    />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Adam Volkman - Portfolio" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@just_makuu" />
+    <meta name="twitter:creator" content="@just_makuu" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Additional SEO -->
+    <meta name="author" content="Adam Volkman" />
+    <meta name="robots" content="index, follow" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Structured Data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Adam Volkman",
+        url: `https://${SITE.domain}`,
+        sameAs: [SITE.github, SITE.linkedin, SITE.twitter, SITE.instagram],
+        jobTitle: "Full-Stack Developer",
+        knowsAbout: [
+          "Java",
+          "TypeScript",
+          "Spring Boot",
+          "React",
+          "Next.js",
+          "PostgreSQL",
+          "Docker",
+        ],
+      })}
+    />
+
     <script is:inline>
       const theme = localStorage.getItem("theme") || "dark";
       document.documentElement.setAttribute("data-theme", theme);
